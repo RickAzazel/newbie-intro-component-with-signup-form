@@ -1,17 +1,7 @@
+/* ============== Variables ============== */
 const form = document.getElementById('form');
-const username = document.getElementById('username');
-const usersurname = document.getElementById('usersurname');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
 
-console.log(form)
-
-form.addEventListener('submit', e => {
-	e.preventDefault();
-
-	validateInputs();
-});
-
+/* ============== Functions ============== */
 const setError = (element, message) => {
 	const inputControl = element.parentElement;
 	const errorMessage = inputControl.querySelector('.error__text');
@@ -40,6 +30,11 @@ const isValidEmail = email => {
 };
 
 const validateInputs = () => {
+	const username = document.getElementById('username');
+	const usersurname = document.getElementById('usersurname');
+	const email = document.getElementById('email');
+	const password = document.getElementById('password');
+	
 	const usernameValue = username.value.trim();
 	const usersurnameValue = usersurname.value.trim();
 	const emailValue = email.value.trim();
@@ -47,21 +42,21 @@ const validateInputs = () => {
 
 	if (usernameValue === '') {
 		setError(username, 'Fist name cannot be empty');
-	} 
+	}
 	else {
 		setSuccess(username);
 	}
 
 	if (usersurnameValue === '') {
 		setError(usersurname, 'Last name cannot be empty');
-	} 
+	}
 	else {
 		setSuccess(usersurname);
 	}
 
 	if (emailValue === '') {
 		setError(email, 'Email cannot be empty');
-	} 
+	}
 	else if (!isValidEmail(emailValue)) {
 		setError(email, 'Looks like this is not an email')
 	}
@@ -71,7 +66,7 @@ const validateInputs = () => {
 
 	if (passwordValue === '') {
 		setError(password, 'Password cannot be empty');
-	} 
+	}
 	else if (passwordValue.length < 8) {
 		setError(password, 'Password must be at least 8 character')
 	}
@@ -79,3 +74,10 @@ const validateInputs = () => {
 		setSuccess(password);
 	}
 };
+
+/* ============== Events ============== */
+form.addEventListener('submit', e => {
+	e.preventDefault();
+
+	validateInputs();
+});
